@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Declaração de Amor - 2 Anos de Namoro</title>
+    <!-- Fontes do Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Definindo algumas variáveis de cor para facilitar a personalização */
+        :root {
+            --cor-titulo: #FF4500;   /* Vermelho vibrante para o título */
+            --cor-texto: #D3D3D3;     /* Cinza claro para o texto */
+            --cor-destaque: #FFB6C1;  /* Rosa suave para destaque */
+            --cor-fundo: #000000;     /* Fundo preto */
+            --cor-botao: rgba(0, 0, 0, 0.6); /* Cor dos botões de navegação */
+            --cor-botao-hover: rgba(255, 182, 193, 0.8); /* Cor dos botões ao passar o mouse */
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            color: white;
+            overflow-x: hidden;
+            background: radial-gradient(circle, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 1)), url('https://www.transparenttextures.com/patterns/starry-night.png') repeat; /* Fundo com gradiente e estrelas */
+            background-attachment: fixed; /* Manter fundo fixo ao rolar */
+        }
+
+        /* Título principal */
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 3.5em;
+            color: var(--cor-titulo);  /* Usando a variável de cor para o título */
+            text-shadow: 3px 3px 15px rgba(255, 69, 0, 0.7), 0 0 25px rgba(255, 69, 0, 0.8);
+        }
+
+        /* Declaração de amor */
+        .message {
+            text-align: center;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8em;
+            margin: 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+            color: var(--cor-texto);  /* Cor suave para o texto */
+            text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Carrossel de Imagens */
+        .carousel {
+            width: 90%;
+            max-width: 800px;
+            margin: 50px auto;
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        .carousel-images {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .carousel-images img {
+            width: 100%;
+            border-radius: 15px;
+            object-fit: cover;
+        }
+
+        .carousel-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: var(--cor-botao); /* Usando a variável para os botões */
+            color: white;
+            font-size: 2rem;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            z-index: 10;
+            border-radius: 50%;
+            transition: background-color 0.3s;
+        }
+
+        .carousel-button:hover {
+            background-color: var(--cor-botao-hover); /* Cor de destaque ao passar o mouse */
+        }
+
+        .prev {
+            left: 10px;
+        }
+
+        .next {
+            right: 10px;
+        }
+
+        /* Rodapé */
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 1.2em;
+            color: var(--cor-texto); /* Cor de texto no rodapé */
+            font-family: 'Poppins', sans-serif;
+            text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Área de ícones */
+        .icons-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            margin-bottom: 30px;
+            gap: 40px;  /* Espaçamento maior entre os ícones */
+        }
+
+        .icon {
+            width: 450px;   /* Tamanho aumentado 3x (450px) */
+            height: 450px;  /* Tamanho aumentado 3x (450px) */
+            object-fit: contain;  /* Garantir que a imagem se ajuste corretamente */
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .icon:hover {
+            transform: scale(1.2);
+        }
+
+        /* Frase abaixo dos ícones */
+        .phrase {
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+            font-size: 2em;  /* Aumentando o tamanho da frase */
+            color: red;  /* Texto em vermelho */
+            margin-top: 20px;
+            text-shadow: 1px 1px 10px rgba(255, 0, 0, 0.8);
+        }
+
+        /* Mais espaço para escrever sobre momentos especiais */
+        .extra-text {
+            text-align: center;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.5em;
+            color: var(--cor-texto);
+            margin: 30px;
+        }
+
+        /* Ajustes de responsividade */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5em;
+            }
+
+            .message {
+                font-size: 1.5em;
+            }
+
+            .carousel {
+                width: 100%;
+            }
+
+            .extra-text {
+                font-size: 1.3em;
+            }
+
+            .icons-container {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+
+            .icon {
+                width: 300px;
+                height: 300px;
+            }
+
+            .phrase {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Título -->
+    <h1>2 Anos de Amor</h1>
+
+    <!-- Declaração de Amor -->
+    <div class="message">
+        <p>Meu amor, já se passaram 2 anos e cada dia ao seu lado é uma nova descoberta. Agradeço a vida por ter você comigo, me fazendo mais feliz a cada sorriso, a cada gesto de carinho. Que venham muitos outros anos para celebrarmos nossa história juntos! 💖</p>
+    </div>
+
+    <!-- Carrossel de Imagens -->
+    <div class="carousel">
+        <div class="carousel-images">
+            <img src="https://via.placeholder.com/800x400?text=Imagem+1" alt="Imagem 1">
+            <img src="https://via.placeholder.com/800x400?text=Imagem+2" alt="Imagem 2">
+            <img src="https://via.placeholder.com/800x400?text=Imagem+3" alt="Imagem 3">
+            <!-- Adicione mais imagens conforme necessário -->
+        </div>
+        <button class="carousel-button prev" onclick="moveCarousel(-1)">❮</button>
+        <button class="carousel-button next" onclick="moveCarousel(1)">❯</button>
+    </div>
+
+    <!-- Área para Desenhos/Símbolos -->
+    <div class="icons-container">
+        <!-- Ícone de Coração com a imagem do Dropbox -->
+        <img class="icon" src="https://www.dropbox.com/scl/fi/6qmssaw4pn6u2wnottogz/cada-batida-do-meu-coracao-para-ti-5a5a31612c54e-estampa-301-removebg-preview.png?dl=1" alt="Coração">
+        <!-- Ícone de Setas -->
+        <img class="icon" src="https://www.dropbox.com/scl/fi/h5l51w8wcx6cillssm6vk/Design_sem_nome-removebg-preview.png?dl=1" alt="Seta Retroceder">
+        <!-- Ícone de Setas -->
+        <img class="icon" src="https://www.dropbox.com/scl/fi/ipz702a8jtjqgyachefk6/2qaWZ82HykXQnn1e6OEogh9f4qn-_1_-1.png?dl=1" alt="Seta Avançar">
+    </div>
+
+    <!-- Frase abaixo dos ícones -->
+    <div class="phrase">
+        <p>Te amo + que ontem, - que amanhã.</p>
+    </div>
+
+    <!-- Mais texto sobre momentos especiais -->
+    <div class="extra-text">
+        <p>Nosso primeiro encontro, nossa viagem incrível, aquele momento que você me fez sorrir... Tudo foi inesquecível! Mal posso esperar para o que o futuro nos reserva. 💫</p>
+    </div>
+
+    <!-- Rodapé -->
+    <div class="footer">
+        <p>Te amo mais a cada dia. ❤️</p>
+    </div>
+
+    <script>
+        let currentIndex = 0;
+
+        function moveCarousel(direction) {
+            const images = document.querySelector('.carousel-images');
+            const totalImages = document.querySelectorAll('.carousel-images img').length;
+            currentIndex += direction;
+
+            if (currentIndex < 0) {
+                currentIndex = totalImages - 1;
+            } else if (currentIndex >= totalImages) {
+                currentIndex = 0;
+            }
+
+            const offset = -currentIndex * 100;
+            images.style.transform = `translateX(${offset}%)`;
+        }
+    </script>
+
+</body>
+</html>
