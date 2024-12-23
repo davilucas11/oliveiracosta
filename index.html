@@ -10,7 +10,7 @@
     <style>
         /* Definindo algumas variáveis de cor para facilitar a personalização */
         :root {
-            --cor-titulo: #FF4500;   /* Vermelho vibrante para o título */
+            --cor-titulo: #FF0000;   /* Vermelho vibrante para o título */
             --cor-texto: #D3D3D3;     /* Cinza claro para o texto */
             --cor-destaque: #FFB6C1;  /* Rosa suave para destaque */
             --cor-fundo: #000000;     /* Fundo preto */
@@ -33,7 +33,7 @@
             text-align: center;
             margin-top: 50px;
             font-size: 3.5em;
-            color: var(--cor-titulo);  /* Usando a variável de cor para o título */
+            color: var(--cor-titulo);  /* Usando a cor vermelha para o título */
             text-shadow: 3px 3px 15px rgba(255, 69, 0, 0.7), 0 0 25px rgba(255, 69, 0, 0.8);
         }
 
@@ -116,18 +116,27 @@
             justify-content: center;
             margin-top: 30px;
             margin-bottom: 30px;
-            gap: 40px;  /* Espaçamento maior entre os ícones */
+            gap: 30px;  /* Espaçamento maior entre os ícones */
         }
 
         .icon {
-            width: 250px;   /* Tamanho aumentado 3x (450px) */
-            height: 250px;  /* Tamanho aumentado 3x (450px) */
+            width: 250px;   /* Tamanho do ícone da esquerda */
+            height: 250px;  /* Tamanho do ícone da esquerda */
             object-fit: contain;  /* Garantir que a imagem se ajuste corretamente */
             cursor: pointer;
             transition: transform 0.3s;
         }
 
-        .icon:hover {
+        .middle-icon {
+            width: 200px;   /* Tamanho reduzido para o ícone do meio */
+            height: 200px;  /* Tamanho reduzido para o ícone do meio */
+            object-fit: contain;  /* Garantir que a imagem se ajuste corretamente */
+            cursor: pointer;
+            transition: transform 0.3s;
+            margin-top: 10px; /* Adicionando uma margem para melhorar o alinhamento */
+        }
+
+        .middle-icon:hover {
             transform: scale(1.2);
         }
 
@@ -174,8 +183,13 @@
             }
 
             .icon {
-                width: 300px;
-                height: 300px;
+                width: 200px;
+                height: 200px;
+            }
+
+            .middle-icon {
+                width: 150px;   /* Ajustando o tamanho do ícone para telas menores */
+                height: 150px;
             }
 
             .phrase {
@@ -200,7 +214,6 @@
             <img src="https://via.placeholder.com/800x400?text=Imagem+1" alt="Imagem 1">
             <img src="https://via.placeholder.com/800x400?text=Imagem+2" alt="Imagem 2">
             <img src="https://via.placeholder.com/800x400?text=Imagem+3" alt="Imagem 3">
-            <!-- Adicione mais imagens conforme necessário -->
         </div>
         <button class="carousel-button prev" onclick="moveCarousel(-1)">❮</button>
         <button class="carousel-button next" onclick="moveCarousel(1)">❯</button>
@@ -210,9 +223,11 @@
     <div class="icons-container">
         <!-- Ícone de Coração com a imagem do Dropbox -->
         <img class="icon" src="https://github.com/davilucas11/oliveiracosta/blob/main/cada-batida-do-meu-coracao-para-ti-5a5a31612c54e-estampa-301-removebg-preview.png?raw=true" alt="Coração">
-        <!-- Ícone de Setas -->
-        <img class="icon" src="https://github.com/davilucas11/oliveiracosta/blob/main/Design_sem_nome-removebg-preview.png?raw=true">
-        <!-- Ícone de Setas -->
+        
+        <!-- Ícone de Setas, agora com a classe 'middle-icon' para centralizar mais -->
+        <img class="middle-icon" src="https://github.com/davilucas11/oliveiracosta/blob/main/Design_sem_nome-removebg-preview.png?raw=true" alt="Setas">
+        
+        <!-- Outro ícone de Setas -->
         <img class="icon" src="https://github.com/davilucas11/oliveiracosta/blob/main/2qaWZ82HykXQnn1e6OEogh9f4qn-_1_%20(1).png?raw=true" alt="Seta Avançar">
     </div>
 
