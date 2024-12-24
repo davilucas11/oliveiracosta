@@ -18,7 +18,7 @@
             font-family: Arial, sans-serif;
         }
 
-        .love-button {
+        .love-button, .creative-button {
             font-size: 2em;
             padding: 20px 40px;
             border: none;
@@ -31,7 +31,7 @@
             margin-top: 20px;
         }
 
-        .love-button:hover {
+        .love-button:hover, .creative-button:hover {
             transform: scale(1.1);
             box-shadow: 0 10px 20px rgba(255, 0, 0, 0.7);
         }
@@ -41,15 +41,20 @@
             margin-bottom: 20px;
             text-align: center;
         }
+
+        .creative-button {
+            background-color: purple;
+        }
     </style>
 </head>
 <body>
     <div class="timer" id="timer">Calculando o tempo juntos...</div>
     <button class="love-button" onclick="openLoveSite()">Te amo ❤</button>
+    <button class="creative-button" onclick="surpriseMessage()">Surpresa 💫</button>
 
     <script>
         function openLoveSite() {
-            window.location.href = "./index.html"; // Substitua pelo nome do arquivo HTML criado
+            window.open("./declaracao_de_amor.html", "_self"); // Abre o site na mesma aba
         }
 
         function calculateTimeTogether() {
@@ -65,6 +70,10 @@
             const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
             document.getElementById("timer").textContent = `Estamos juntos há ${years} anos, ${days} dias, ${hours} horas, ${minutes} minutos e ${seconds} segundos.`;
+        }
+
+        function surpriseMessage() {
+            alert("Você é o amor da minha vida! Obrigado por cada momento ao seu lado. ❤");
         }
 
         setInterval(calculateTimeTogether, 1000);
