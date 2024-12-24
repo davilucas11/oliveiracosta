@@ -9,10 +9,13 @@
             margin: 0;
             padding: 0;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
             background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
         }
 
         .love-button {
@@ -25,21 +28,46 @@
             cursor: pointer;
             box-shadow: 0 5px 15px rgba(255, 0, 0, 0.5);
             transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 20px;
         }
 
         .love-button:hover {
             transform: scale(1.1);
             box-shadow: 0 10px 20px rgba(255, 0, 0, 0.7);
         }
+
+        .timer {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
+    <div class="timer" id="timer">Calculando o tempo juntos...</div>
     <button class="love-button" onclick="openLoveSite()">Te amo ❤</button>
 
     <script>
         function openLoveSite() {
             window.location.href = "./index.html"; // Substitua pelo nome do arquivo HTML criado
         }
+
+        function calculateTimeTogether() {
+            const startDate = new Date("2022-12-26T00:00:00");
+            const now = new Date();
+
+            const diff = now - startDate;
+
+            const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365));
+            const days = Math.floor((diff % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById("timer").textContent = `Estamos juntos há ${years} anos, ${days} dias, ${hours} horas, ${minutes} minutos e ${seconds} segundos.`;
+        }
+
+        setInterval(calculateTimeTogether, 1000);
     </script>
 </body>
 </html>
