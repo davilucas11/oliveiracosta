@@ -10,7 +10,7 @@
     <style>
         /* Definindo algumas variáveis de cor para facilitar a personalização */
         :root {
-            --cor-titulo: #FF4500;   /* Vermelho vibrante para o título */
+            --cor-titulo: red;   /* Cor vermelha para título e frase de amor */
             --cor-texto: #D3D3D3;     /* Cinza claro para o texto */
             --cor-destaque: #FFB6C1;  /* Rosa suave para destaque */
             --cor-fundo: #000000;     /* Fundo preto */
@@ -34,7 +34,7 @@
             margin-top: 50px;
             font-size: 3.5em;
             color: var(--cor-titulo);  /* Usando a variável de cor para o título */
-            text-shadow: 3px 3px 15px rgba(255, 69, 0, 0.7), 0 0 25px rgba(255, 69, 0, 0.8);
+            text-shadow: 3px 3px 15px rgba(255, 0, 0, 0.8), 0 0 25px rgba(255, 0, 0, 0.9);
         }
 
         /* Declaração de amor */
@@ -60,17 +60,21 @@
             overflow: hidden;
             border-radius: 15px;
             box-shadow: 0 4px 25px rgba(0, 0, 0, 0.5);
+            touch-action: pan-y;
         }
 
         .carousel-images {
             display: flex;
-            transition: transform 0.5s ease;
+            transition: transform 0.5s ease-in-out;
+            will-change: transform;
         }
 
         .carousel-images img {
             width: 100%;
             border-radius: 15px;
             object-fit: cover;
+            user-select: none;
+            pointer-events: none;
         }
 
         .carousel-button {
@@ -120,11 +124,16 @@
         }
 
         .icon {
-            width: 450px;   /* Tamanho aumentado 3x (450px) */
-            height: 450px;  /* Tamanho aumentado 3x (450px) */
+            width: 300px;
+            height: 300px;
             object-fit: contain;  /* Garantir que a imagem se ajuste corretamente */
             cursor: pointer;
             transition: transform 0.3s;
+        }
+
+        .icon.middle {
+            width: 100px;  /* Tamanho menor para o ícone do meio */
+            height: 100px;
         }
 
         .icon:hover {
@@ -136,7 +145,7 @@
             text-align: center;
             font-family: 'Poppins', sans-serif;
             font-size: 2em;  /* Aumentando o tamanho da frase */
-            color: red;  /* Texto em vermelho */
+            color: var(--cor-titulo);  /* Usando a mesma cor do título */
             margin-top: 20px;
             text-shadow: 1px 1px 10px rgba(255, 0, 0, 0.8);
         }
@@ -174,8 +183,13 @@
             }
 
             .icon {
-                width: 300px;
-                height: 300px;
+                width: 250px;
+                height: 250px;
+            }
+
+            .icon.middle {
+                width: 80px;
+                height: 80px;
             }
 
             .phrase {
@@ -196,7 +210,7 @@
 
     <!-- Carrossel de Imagens -->
     <div class="carousel">
-        <div class="carousel-images">
+        <div class="carousel-images" id="carouselImages">
             <img src="https://via.placeholder.com/800x400?text=Imagem+1" alt="Imagem 1">
             <img src="https://via.placeholder.com/800x400?text=Imagem+2" alt="Imagem 2">
             <img src="https://via.placeholder.com/800x400?text=Imagem+3" alt="Imagem 3">
@@ -208,11 +222,8 @@
 
     <!-- Área para Desenhos/Símbolos -->
     <div class="icons-container">
-        <!-- Ícone de Coração com a imagem do Dropbox -->
         <img class="icon" src="https://github.com/davilucas11/oliveiracosta/blob/main/cada-batida-do-meu-coracao-para-ti-5a5a31612c54e-estampa-301-removebg-preview.png?raw=true" alt="Coração">
-        <!-- Ícone de Setas -->
-        <img class="icon" src="https://github.com/davilucas11/oliveiracosta/blob/main/Design_sem_nome-removebg-preview.png?raw=true" alt="Seta Retroceder">
-        <!-- Ícone de Setas -->
+        <img class="icon middle" src="https://github.com/davilucas11/oliveiracosta/blob/main/Design_sem_nome-removebg-preview.png?raw=true" alt="Seta Retroceder">
         <img class="icon" src="https://github.com/davilucas11/oliveiracosta/blob/main/2qaWZ82HykXQnn1e6OEogh9f4qn-_1_%20(1).png?raw=true" alt="Seta Avançar">
     </div>
 
@@ -233,6 +244,9 @@
 
     <script>
         let currentIndex = 0;
+        const carouselImages = document.getElementById('carouselImages');
+        let startX = 0;
+        let isDragging = false;
 
         function moveCarousel(direction) {
             const images = document.querySelector('.carousel-images');
@@ -246,8 +260,57 @@
             }
 
             const offset = -currentIndex * 100;
-            images.style.transform = translateX(${offset}%);
+            images.style.transform = `translateX(${offset}%)`;
         }
+
+        // Touch Events for dragging
+        carouselImages.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            startX = e.clientX;
+        });
+
+        carouselImages.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            const diffX = e.clientX - startX;
+
+            if (diffX > 50) {
+                moveCarousel(-1);
+                isDragging = false;
+            } else if (diffX < -50) {
+                moveCarousel(1);
+                isDragging = false;
+            }
+        });
+
+        carouselImages.addEventListener('mouseup', () => {
+            isDragging = false;
+        });
+
+        carouselImages.addEventListener('mouseleave', () => {
+            isDragging = false;
+        });
+
+        carouselImages.addEventListener('touchstart', (e) => {
+            isDragging = true;
+            startX = e.touches[0].clientX;
+        });
+
+        carouselImages.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            const diffX = e.touches[0].clientX - startX;
+
+            if (diffX > 50) {
+                moveCarousel(-1);
+                isDragging = false;
+            } else if (diffX < -50) {
+                moveCarousel(1);
+                isDragging = false;
+            }
+        });
+
+        carouselImages.addEventListener('touchend', () => {
+            isDragging = false;
+        });
     </script>
 
 </body>
